@@ -16,16 +16,16 @@ export default class Header extends Component {
     render() {
         return (
             <View style={styles.container}>
-                <Image source={require('./images/header/header_logo.png')} style={styles.logo}/>
+                <Image source={require('../../images/header/header_logo.png')} style={styles.logo}/>
                 <View style={styles.searchBox}>
-                    <Image source={require('./images/header/icon_search.png')} style={styles.searchIcon}/>
+                    <Image source={require('../../images/header/icon_search.png')} style={styles.searchIcon}/>
                     <TextInput
                         keyboardType='web-search'
                         placeholder='搜索京东商品/店铺'
                         style={styles.inputText}/>
-                    <Image source={require('./images/header/icon_voice.png')} style={styles.voiceIcon}/>
+                    <Image source={require('../../images/header/icon_voice.png')} style={styles.voiceIcon}/>
                 </View>
-                <Image source={require('./images/header/icon_qr.png')} style={styles.scanIcon}/>
+                <Image source={require('../../images/header/icon_qr.png')} style={styles.scanIcon}/>
             </View>
         )
     }

@@ -11,11 +11,10 @@ import React, {
     TouchableOpacity,
     Text
 } from 'react-native';
-import MainScreen from './MainScreen';
-import JdWebView from './WebView';
+import MainScreen from './src/MainScreen.ios';
+import JdWebView from './src/components/common/WebView';
 
 class JdApp extends Component {
-
     render() {
         return (
             <Navigator

@@ -9,11 +9,16 @@ import React, {
     Image,
     Text,
     View,
-    Navigator
+    Navigator,ScrollView
 } from 'react-native';
 
-import Header from './Header';
-import HomePage from './home/HomePage';
+
+import Header from './components/header/Header';
+import HomePage from './components/home/HomePage';
+import UCenterPage from './components/ucenter/UCenterPage';
+import CategoryPage from './components/category/CategoryPage';
+import ShopCartPage from './components/shopCart/ShopCartPage';
+
 import TabNavigator from 'react-native-tab-navigator';
 
 const HOME = 'home';
@@ -36,7 +41,7 @@ export default class MainScreen extends Component {
 
     constructor(props) {
         super(props);
-        this.state = {selectedTab: HOME}
+        this.state = { selectedTab: HOME }
     }
 
     _renderTabItem(img, selectedImg, tag, childView) {
@@ -45,7 +50,7 @@ export default class MainScreen extends Component {
                 selected={this.state.selectedTab === tag}
                 renderIcon={() => <Image style={styles.tabIcon} source={img}/>}
                 renderSelectedIcon={() => <Image style={styles.tabIcon} source={selectedImg}/>}
-                onPress={() => this.setState({ selectedTab: tag })}>
+                onPress={() => this.setState({ selectedTab: tag }) }>
                 {childView}
             </TabNavigator.Item>
         );
@@ -53,22 +58,22 @@ export default class MainScreen extends Component {
 
     static _createChildView(tag) {
         return (
-            <View style={{flex:1,backgroundColor:'#00baff',alignItems:'center',justifyContent:'center'}}>
-                <Text style={{fontSize:22}}>{tag}</Text>
+            <View style={{ flex: 1, backgroundColor: '#00baff', alignItems: 'center', justifyContent: 'center' }}>
+                <Text style={{ fontSize: 22 }}>{tag}</Text>
             </View>
         )
     }
 
     render() {
         return (
-            <View style={{flex: 1}}>
-                <Header />
+            <View style={{ flex: 1 }}>
+                <Header/>
                 <TabNavigator hidesTabTouch={true} tabBarStyle={styles.tab}>
-                    {this._renderTabItem(HOME_NORMAL, HOME_FOCUS, HOME, <HomePage nav={this.props.nav}/>)}
-                    {this._renderTabItem(CATEGORY_NORMAL, CATEGORY_FOCUS, CATEGORY, MainScreen._createChildView(CATEGORY))}
-                    {this._renderTabItem(FAXIAN_NORMAL, FAXIAN_FOCUS, FAXIAN, MainScreen._createChildView(FAXIAN))}
-                    {this._renderTabItem(CART_NORMAL, CART_FOCUS, CART, MainScreen._createChildView(CART))}
-                    {this._renderTabItem(PERSONAL_NORMAL, PERSONAL_FOCUS, PERSONAL, MainScreen._createChildView(PERSONAL))}
+                    {this._renderTabItem(HOME_NORMAL, HOME_FOCUS, HOME, <HomePage nav={this.props.nav}/>) }
+                    {this._renderTabItem(CATEGORY_NORMAL, CATEGORY_FOCUS, CATEGORY, <CategoryPage nav={this.props.nav}/>) }
+                    {this._renderTabItem(FAXIAN_NORMAL, FAXIAN_FOCUS, FAXIAN, MainScreen._createChildView(FAXIAN)) }
+                    {this._renderTabItem(CART_NORMAL, CART_FOCUS, CART, <ShopCartPage nav={this.props.nav} />) }
+                    {this._renderTabItem(PERSONAL_NORMAL, PERSONAL_FOCUS, PERSONAL, <UCenterPage nav={this.props.nav}/>) }
                 </TabNavigator>
             </View >
         );
